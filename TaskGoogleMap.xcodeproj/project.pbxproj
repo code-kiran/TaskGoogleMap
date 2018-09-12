@@ -12,9 +12,12 @@
 		9F81FD052146B3B800D58F0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F81FD032146B3B800D58F0B /* Main.storyboard */; };
 		9F81FD072146B3BA00D58F0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F81FD062146B3BA00D58F0B /* Assets.xcassets */; };
 		9F81FD0A2146B3BA00D58F0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F81FD082146B3BA00D58F0B /* LaunchScreen.storyboard */; };
+		DBFD277724B5D84833574D7B /* Pods_TaskGoogleMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C818C1A4F91018DD49B2EF97 /* Pods_TaskGoogleMap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		072F1232B65196649DF2ECCE /* Pods-TaskGoogleMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskGoogleMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskGoogleMap/Pods-TaskGoogleMap.release.xcconfig"; sourceTree = "<group>"; };
+		397AF77EB651D011F259142E /* Pods-TaskGoogleMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskGoogleMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskGoogleMap/Pods-TaskGoogleMap.debug.xcconfig"; sourceTree = "<group>"; };
 		9F81FCFC2146B3B800D58F0B /* TaskGoogleMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskGoogleMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F81FCFF2146B3B800D58F0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F81FD012146B3B800D58F0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		9F81FD062146B3BA00D58F0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F81FD092146B3BA00D58F0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F81FD0B2146B3BA00D58F0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C818C1A4F91018DD49B2EF97 /* Pods_TaskGoogleMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskGoogleMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBFD277724B5D84833574D7B /* Pods_TaskGoogleMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A7E6AD13EF9671FD4047D96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C818C1A4F91018DD49B2EF97 /* Pods_TaskGoogleMap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D73CE5B0AB4AC185E5A354F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				397AF77EB651D011F259142E /* Pods-TaskGoogleMap.debug.xcconfig */,
+				072F1232B65196649DF2ECCE /* Pods-TaskGoogleMap.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9F81FCF32146B3B800D58F0B = {
 			isa = PBXGroup;
 			children = (
 				9F81FCFE2146B3B800D58F0B /* TaskGoogleMap */,
 				9F81FCFD2146B3B800D58F0B /* Products */,
+				8D73CE5B0AB4AC185E5A354F /* Pods */,
+				0A7E6AD13EF9671FD4047D96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F81FD0E2146B3BA00D58F0B /* Build configuration list for PBXNativeTarget "TaskGoogleMap" */;
 			buildPhases = (
+				44C33C0D535174B79D5CBCE9 /* [CP] Check Pods Manifest.lock */,
 				9F81FCF82146B3B800D58F0B /* Sources */,
 				9F81FCF92146B3B800D58F0B /* Frameworks */,
 				9F81FCFA2146B3B800D58F0B /* Resources */,
+				6AAB033301AAAE943660D827 /* [CP] Copy Pods Resources */,
+				69301D5A4582A1ED0531B9F2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44C33C0D535174B79D5CBCE9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TaskGoogleMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69301D5A4582A1ED0531B9F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TaskGoogleMap/Pods-TaskGoogleMap-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskGoogleMap/Pods-TaskGoogleMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AAB033301AAAE943660D827 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TaskGoogleMap/Pods-TaskGoogleMap-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskGoogleMap/Pods-TaskGoogleMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F81FCF82146B3B800D58F0B /* Sources */ = {
@@ -278,14 +362,12 @@
 		};
 		9F81FD0F2146B3BA00D58F0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 397AF77EB651D011F259142E /* Pods-TaskGoogleMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TaskGoogleMap/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiranrana.TaskGoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -295,14 +377,12 @@
 		};
 		9F81FD102146B3BA00D58F0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 072F1232B65196649DF2ECCE /* Pods-TaskGoogleMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TaskGoogleMap/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiranrana.TaskGoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
