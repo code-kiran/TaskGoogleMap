@@ -35,7 +35,8 @@ import Alamofire
 
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: GMSMapView!
-        //  let location = "Kathmandu"
+    //  let location = "Kathmandu"
+    var infoDict:[String: String] = ["place": "", "temp": ""]
     let baseUrl: String = "https://api.darksky.net/forecast"
     let apiKey: String = "/1d6d475e106d8a7d3a9cc31068ce46a2/"
     // let Url = "https://api.darksky.net/forecast/1d6d475e106d8a7d3a9cc31068ce46a2/37.8267,-122.4233"
@@ -46,45 +47,28 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 10.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.mapType = .satellite
         view = mapView
         mapView.delegate = self
     }
     
-    /*
-     locationUpdateFromString(placeName: location)
-     
-     locationManager.delegate = self
-     locationManager.desiredAccuracy = kCLLocationAccuracyBest
-     locationManager.requestAlwaysAuthorization()
-     locationManager.startUpdatingLocation()
-     */
-    
-    
-    /*
-     func locationUpdateFromString(placeName: String) {
-     let geoCoder = CLGeocoder()
-     geoCoder.geocodeAddressString(placeName) { (placemarks, error) in
-     guard let location = placemarks?.first?.location else {
-     print ("something went wrong with placename , cant find any such place ")
-     return
-     }
-     let lat = location.coordinate.latitude
-     let long = location.coordinate.longitude
-     let Url = ("\(baseUrl)" + "\(apiKey)" + "\(lat)" + "," + "\(long)")
-     self.getWeatherData(url: Url)
-     
-     } */
-    
-    
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
-        let lat = coordinate.latitude
-        let long = coordinate.longitude
-        let Url = ("\(baseUrl)" + "\(apiKey)" + "\(lat)" + "," + "\(long)")
-        self.getLocationFromCoordinaties(latitude: lat, longitude: long)
-        self.getWeatherData(url: Url)
-
-      
+    func getWeatherData(url: String) {
+        Alamofire.request(url, method: .get).responseJSON { (response) in
+            if   let weatherJson  = response.result.value as? NSDictionary {
+                // print(weatherJson)
+                let currentWeather = weatherJson["currently"] as! NSDictionary
+                let temp = currentWeather["temperature"]
+                print("temp: \(temp ?? 0)")
+                let temperature = "Current Temperature : \(temp ?? 0) ℉"
+                self.infoDict["temp"] = temperature
+                print(temperature)
+                
+                
+            } else {
+                print("cant get weather data . something went wrong")
+            }
+            
+        }
         
     }
     
@@ -121,35 +105,65 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                     addressString = addressString + pm.postalCode! + " "
                 }
                 print(addressString)
+                self.infoDict["place"] = addressString
                 
-            }
-            
-        }
-
-    }
-    
-//    func locationMarker(latitude: Double, longitude: Double) {
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: latitude , longitude: longitude)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapView
-//    }
-//
-    func getWeatherData(url: String) {
-        Alamofire.request(url, method: .get).responseJSON { (response) in
-            if   let weatherJson  = response.result.value as? NSDictionary {
-                // print(weatherJson)
-                let currentWeather = weatherJson["currently"] as! NSDictionary
-                print(currentWeather["temperature"])
-                
-            } else {
-                print("cant get weather data . something went wrong")
             }
             
         }
         
     }
+
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+        let lat = coordinate.latitude
+        let long = coordinate.longitude
+        let Url = ("\(baseUrl)" + "\(apiKey)" + "\(lat)" + "," + "\(long)")
+        self.getLocationFromCoordinaties(latitude: lat, longitude: long)
+        self.getWeatherData(url: Url)
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: lat  , longitude: long)
+        marker.title = infoDict["place"]
+        marker.snippet = infoDict["temp"]
+//        marker.title = "TITLE"
+//        marker.snippet = "SUBTITE"
+        marker.map = mapView
+        
+    }
     
+//    func showMarker(latitude: Double, longitude: Double){
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
+//        marker.title = "Palo Alto"
+//        marker.snippet = "San Francisco"
+//        marker.map = mapView
+//    }
+//
+
 }
+
+
+/*
+ MARK:   locationUpdateFromString(placeName: location)
+ 
+ locationManager.delegate = self
+ locationManager.desiredAccuracy = kCLLocationAccuracyBest
+ locationManager.requestAlwaysAuthorization()
+ locationManager.startUpdatingLocation()
+ */
+
+
+/*
+ func locationUpdateFromString(placeName: String) {
+ let geoCoder = CLGeocoder()
+ geoCoder.geocodeAddressString(placeName) { (placemarks, error) in
+ guard let location = placemarks?.first?.location else {
+ print ("something went wrong with placename , cant find any such place ")
+ return
+ }
+ let lat = location.coordinate.latitude
+ let long = location.coordinate.longitude
+ let Url = ("\(baseUrl)" + "\(apiKey)" + "\(lat)" + "," + "\(long)")
+ self.getWeatherData(url: Url)
+ 
+ } */
 
