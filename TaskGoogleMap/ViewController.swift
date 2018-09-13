@@ -9,46 +9,36 @@
 import UIKit
 import GoogleMaps
 import Alamofire
-//import CoreLocation
 
-//struct Currently {
-//    let time: Int?
-//    let summary: Summary?
-//    let icon: Icon?
-//    let nearestStormDistance, nearestStormBearing: Int?
-//    let precipIntensity, precipProbability, temperature, apparentTemperature: Double?
-//    let dewPoint, humidity, pressure, windSpeed: Double?
-//    let windGust: Double?
-//    let windBearing: Int?
-//    let cloudCover: Double?
-//    let uvIndex, visibility: Int?
-//    let ozone: Double?
-//    let precipType: PrecipType?
-//}
+class InfoModal: NSObject {
+    var temp: String?
+    var location: String?
+    init(temp: String, location: String) {
+        self.temp = temp
+        self.location = location
+    }
+}
 
-//struct PlaceDetails {
-//    var placeName: String?
-//    var placeSubTitle: String?
-//    var PlaceTemperature: String?
-//}
-
-
-class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate {
+    @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var mapView: GMSMapView!
-    //  let location = "Kathmandu"
-    var infoDict:[String: String] = ["place": "", "temp": ""]
+    
+    var infoDict = ["temp": "", "place": ""]
+    var infoArray:[InfoModal]  = []
     let baseUrl: String = "https://api.darksky.net/forecast"
     let apiKey: String = "/1d6d475e106d8a7d3a9cc31068ce46a2/"
-    // let Url = "https://api.darksky.net/forecast/1d6d475e106d8a7d3a9cc31068ce46a2/37.8267,-122.4233"
-    //   let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        myTableView.delegate = self
+        myTableView.dataSource = self
         // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 10.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: 27.7172, longitude: 85.3240, zoom: 15.0)
+        let mapView = GMSMapView.map(withFrame: self.containerView.frame , camera: camera)
         mapView.mapType = .satellite
-        view = mapView
+        self.view.addSubview(mapView)
+        //        view = mapView
         mapView.delegate = self
     }
     
@@ -62,8 +52,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
                 let temperature = "Current Temperature : \(temp ?? 0) ℉"
                 self.infoDict["temp"] = temperature
                 print(temperature)
-                
-                
+
             } else {
                 print("cant get weather data . something went wrong")
             }
@@ -112,7 +101,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         }
         
     }
-
+    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
         let lat = coordinate.latitude
@@ -124,32 +113,30 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         marker.position = CLLocationCoordinate2D(latitude: lat  , longitude: long)
         marker.title = infoDict["place"]
         marker.snippet = infoDict["temp"]
-//        marker.title = "TITLE"
-//        marker.snippet = "SUBTITE"
         marker.map = mapView
-        
+        self.infoArray.append(InfoModal(temp: (infoDict["temp"])!, location: (infoDict["place"])!))
+        myTableView.reloadData()
     }
     
-//    func showMarker(latitude: Double, longitude: Double){
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-//        marker.title = "Palo Alto"
-//        marker.snippet = "San Francisco"
-//        marker.map = mapView
-//    }
-//
-
 }
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return infoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = myTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TblCell
+        cell?.locationLable.text = self.infoArray[indexPath.row].location
+        cell?.tempLable.text = self.infoArray[indexPath.row].temp
+        return cell!
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+}
 
-/*
- MARK:   locationUpdateFromString(placeName: location)
- 
- locationManager.delegate = self
- locationManager.desiredAccuracy = kCLLocationAccuracyBest
- locationManager.requestAlwaysAuthorization()
- locationManager.startUpdatingLocation()
- */
 
 
 /*

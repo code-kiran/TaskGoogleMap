@@ -17,24 +17,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM5-Vy-XBS" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="451"/>
-                                <color key="backgroundColor" red="0.94706498449999998" green="0.95274561639999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTq-7d-Qg8" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM5-Vy-XBS" customClass="GMSMapView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="319"/>
+                                        <color key="backgroundColor" red="0.94706498449999998" green="0.95274561639999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="451" id="f3c-L3-B3L"/>
+                                    <constraint firstAttribute="bottom" secondItem="CM5-Vy-XBS" secondAttribute="bottom" constant="-9" id="KvO-Si-hg9"/>
+                                    <constraint firstAttribute="trailing" secondItem="CM5-Vy-XBS" secondAttribute="trailing" id="P0H-M8-gaU"/>
+                                    <constraint firstAttribute="height" constant="310" id="PZy-9K-CHd"/>
+                                    <constraint firstItem="CM5-Vy-XBS" firstAttribute="leading" secondItem="JTq-7d-Qg8" secondAttribute="leading" id="e4B-Xp-gBG"/>
+                                    <constraint firstItem="CM5-Vy-XBS" firstAttribute="top" secondItem="JTq-7d-Qg8" secondAttribute="top" id="nHp-yj-NZU"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3PV-d2-x5R">
+                                <rect key="frame" x="0.0" y="326" width="375" height="341"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="73" id="n5m-H7-qVM" customClass="TblCell" customModule="TaskGoogleMap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="73"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n5m-H7-qVM" id="8kz-lf-aDs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eKe-4Y-DS8">
+                                                    <rect key="frame" x="25" y="16.5" width="325" height="40"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zls-Lb-nmx">
+                                                            <rect key="frame" x="0.0" y="0.0" width="325" height="18"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE0-qN-1d3">
+                                                            <rect key="frame" x="0.0" y="22" width="325" height="18"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eKe-4Y-DS8" firstAttribute="centerX" secondItem="8kz-lf-aDs" secondAttribute="centerX" id="HMr-XT-nWe"/>
+                                                <constraint firstItem="eKe-4Y-DS8" firstAttribute="centerY" secondItem="8kz-lf-aDs" secondAttribute="centerY" id="K9Y-B0-3LQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="eKe-4Y-DS8" secondAttribute="trailing" constant="10" id="WYx-bk-ckx"/>
+                                                <constraint firstItem="eKe-4Y-DS8" firstAttribute="leading" secondItem="8kz-lf-aDs" secondAttribute="leadingMargin" constant="10" id="gqx-fg-Sgh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="locationLable" destination="Zls-Lb-nmx" id="40s-7A-vtc"/>
+                                            <outlet property="tempLable" destination="BE0-qN-1d3" id="bs7-SG-Ujm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.86283082710000003" green="0.86033864159999995" blue="0.92016973349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="CM5-Vy-XBS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KCx-RO-d3e"/>
-                            <constraint firstItem="CM5-Vy-XBS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LlL-dk-Dut"/>
-                            <constraint firstItem="CM5-Vy-XBS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Oo3-v5-gpd"/>
+                            <constraint firstItem="3PV-d2-x5R" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="92d-aU-aGZ"/>
+                            <constraint firstItem="3PV-d2-x5R" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZsV-0k-SGf"/>
+                            <constraint firstItem="3PV-d2-x5R" firstAttribute="top" secondItem="CM5-Vy-XBS" secondAttribute="bottom" constant="7" id="dxg-gw-opx"/>
+                            <constraint firstItem="JTq-7d-Qg8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jJB-7K-VKp"/>
+                            <constraint firstItem="JTq-7d-Qg8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="knh-a3-pXe"/>
+                            <constraint firstItem="3PV-d2-x5R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rhY-Tr-4cC"/>
+                            <constraint firstItem="JTq-7d-Qg8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zzm-7P-Loq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="JTq-7d-Qg8" id="Nh0-5S-tyA"/>
                         <outlet property="mapView" destination="CM5-Vy-XBS" id="Ews-Pz-vwu"/>
+                        <outlet property="myTableView" destination="3PV-d2-x5R" id="hjK-hn-Dsb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
